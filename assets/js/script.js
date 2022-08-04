@@ -14,11 +14,6 @@ var taskFormHandler = function(event) {
 
     //send it as an argument to createTaskEl
     createTaskEl(taskDataObj);
-
-    var listItemEl = document.createElement('li');
-    listItemEl.className = 'task-item';
-    listItemEl.textContent = taskNameInput;
-    tasksToDoEl.appendChild(listItemEl);
 };
 
 var createTaskEl = function(taskDataObj) {
@@ -31,7 +26,7 @@ var createTaskEl = function(taskDataObj) {
     //give it a class name
     taskInfoEl.className = 'task-info';
     //add HTML content to div
-    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class= 'task-type'>" + taskTypeInput + "</span>";
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class= 'task-type'>" + taskDataObj.type + "</span>";
 
     listItemEl.appendChild(taskInfoEl);
 
@@ -39,4 +34,4 @@ var createTaskEl = function(taskDataObj) {
     tasksToDoEl.appendChild(listItemEl);
 }
 
-formEl.addEventListener('submit', createTaskHandler);
+formEl.addEventListener('submit', taskFormHandler);
