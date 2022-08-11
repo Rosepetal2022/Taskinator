@@ -200,10 +200,10 @@ var editTask = function(taskId) {
 
     //get content from taks name and type
     var taskName = taskSelected.querySelector('h3.task-name').textContent;
-    console.log(taskName);
+
 
     var taskType = taskSelected.querySelector('span.task-type').textContent;
-    console.log(taskType);
+    
 
     //write values of taskName and taskType to form to be edited
     document.querySelector("input[name='task-name']").value = taskName;
@@ -242,6 +242,18 @@ var deleteTask = function(taskId) {
 var saveTasks = function() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
+
+var loadTasks = () => {
+    var savedTasks = localStorage.getItem('tasks');
+    if (savedTasks === null){
+        tasks = [];
+        return false
+    };
+    savedTasks = JSON.parse(savedTasks);
+    for (i = 0; i< savedTasks.length; i++) {
+        createTaskEl(savedTasks[i]);
+    }
+};
 
 //create a new task
 formEl.addEventListener('submit', taskFormHandler);
